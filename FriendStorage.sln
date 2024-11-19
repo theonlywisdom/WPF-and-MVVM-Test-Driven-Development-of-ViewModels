@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35506.116 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.UI", "FriendStorage.UI\FriendStorage.UI.csproj", "{FBA5E085-6953-455E-B407-1AF59EF1E60B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.Model", "FriendStorage.Model\FriendStorage.Model.csproj", "{880668FD-AFE5-4D5D-8144-B2A2FEA75EC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.DataAccess", "FriendStorage.DataAccess\FriendStorage.DataAccess.csproj", "{4370D056-CDEB-47E1-BAD6-86802F27819D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.UI", "FriendStorage.UI\FriendStorage.UI.csproj", "{567B8260-8A44-4374-B6AF-C24491D16DF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBA5E085-6953-455E-B407-1AF59EF1E60B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA5E085-6953-455E-B407-1AF59EF1E60B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBA5E085-6953-455E-B407-1AF59EF1E60B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBA5E085-6953-455E-B407-1AF59EF1E60B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{880668FD-AFE5-4D5D-8144-B2A2FEA75EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{880668FD-AFE5-4D5D-8144-B2A2FEA75EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{880668FD-AFE5-4D5D-8144-B2A2FEA75EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{4370D056-CDEB-47E1-BAD6-86802F27819D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4370D056-CDEB-47E1-BAD6-86802F27819D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4370D056-CDEB-47E1-BAD6-86802F27819D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567B8260-8A44-4374-B6AF-C24491D16DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567B8260-8A44-4374-B6AF-C24491D16DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567B8260-8A44-4374-B6AF-C24491D16DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567B8260-8A44-4374-B6AF-C24491D16DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
