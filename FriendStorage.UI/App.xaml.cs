@@ -24,11 +24,14 @@ namespace FriendStorage.UI
             services.AddTransient<MainViewModel>();
             services.AddSingleton<IEventAggregator, EventAggregator>();
             services.AddSingleton<IDataService, FileDataService>();
+            services.AddSingleton<IFriendDataProvider, FriendDataProvider>();
             services.AddSingleton<IFriendEditViewModel, FriendEditViewModel>();
 
             services.AddSingleton<Func<IDataService>>(sp => () => sp.GetRequiredService<IDataService>());
 
             services.AddSingleton<Func<IFriendEditViewModel>>(sp => () => sp.GetRequiredService<IFriendEditViewModel>());
+
+            services.AddSingleton<Func<IFriendDataProvider>>(sp => () => sp.GetRequiredService<IFriendDataProvider>());
 
             services.AddTransient<INavigationDataProvider, NavigationDataProvider>();
             services.AddTransient<INavigationViewModel, NavigationViewModel>();
