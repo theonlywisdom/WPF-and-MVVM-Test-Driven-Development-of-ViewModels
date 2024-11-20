@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FriendStorage.DataAccess\FriendStorage.DataAccess.csproj" />
     <ProjectReference Include="..\FriendStorage.Model\FriendStorage.Model.csproj" />
   </ItemGroup>
 
