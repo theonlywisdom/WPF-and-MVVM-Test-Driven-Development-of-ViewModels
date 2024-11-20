@@ -14,7 +14,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Command="{Binding OpenFriendEditViewCommand}" Style="{StaticResource NavigationButtonStyle}">
-                        <TextBlock Text="{Binding DisplayMember}"/>
+                        <TextBlock Text="{Binding DisplayMember}" />
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
