@@ -4,6 +4,6 @@ namespace FriendStorage.DataAccess
 {
     public interface INavigationDataProvider
     {
-        IEnumerable<Friend> GetAllFriends();
+        IEnumerable<LookupItem> GetAllFriends();
     }
 }

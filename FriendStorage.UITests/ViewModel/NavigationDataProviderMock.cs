@@ -5,10 +5,10 @@ namespace FriendStorage.UITests.ViewModel
 {
     public class NavigationDataProviderMock : INavigationDataProvider
     {
-        public IEnumerable<Friend> GetAllFriends()
+        public IEnumerable<LookupItem> GetAllFriends()
         {
-            yield return new Friend() { Id = 1, FirstName = "Ama" };
-            yield return new Friend() { Id = 2, FirstName = "Akua" };
+            yield return new LookupItem() { Id = 1, DisplayMember = "Ama" };
+            yield return new LookupItem() { Id = 2, DisplayMember = "Akua" };
         }
     }
 }

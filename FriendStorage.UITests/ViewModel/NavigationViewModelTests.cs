@@ -16,12 +16,12 @@ namespace FriendStorage.UITests.ViewModel
             var friend = viewModel.Friends.SingleOrDefault(f => f.Id == 1);
 
             Assert.NotNull(friend);
-            Assert.Equal("Ama", friend.FirstName);
+            Assert.Equal("Ama", friend.DisplayMember);
 
             friend = viewModel.Friends.SingleOrDefault(f => f.Id == 2);
 
             Assert.NotNull(friend);
-            Assert.Equal("Akua", friend.FirstName);
+            Assert.Equal("Akua", friend.DisplayMember);
         }
 
         [Fact]

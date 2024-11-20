@@ -10,6 +10,6 @@ namespace FriendStorage.DataAccess
 
         void DeleteFriend(int friendId);
 
-        IEnumerable<Friend> GetAllFriends();
+        IEnumerable<LookupItem> GetAllFriends();
     }
 }
