@@ -5,7 +5,7 @@ namespace FriendStorage.UITests.ViewModel
 {
     public class MainViewModelTests
     {
-        [Fact]
+        [Fact(DisplayName = "ShouldCallTheLoadMethodOfTheNavigationViewModel")]
         public void ShouldCallTheLoadMethodOfTheNavigationViewModel()
         {
             var navigationViewModelMock = new Mock<INavigationViewModel>();
