@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using FriendStorage.UI.Events;
+using System.Windows.Input;
 using DelegateCommand = FriendStorage.UI.Command.DelegateCommand;
 
 namespace FriendStorage.UI.ViewModel
@@ -18,7 +19,7 @@ namespace FriendStorage.UI.ViewModel
 
         private void OnFriendEditViewExecute(object friendId)
         {
-            throw new NotImplementedException();
+            _eventAggregator.GetEvent<OpenFriendEditViewEvent>().Publish(Id);
         }
 
         public int Id { get; private set; }
