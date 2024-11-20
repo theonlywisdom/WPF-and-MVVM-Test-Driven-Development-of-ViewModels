@@ -5,15 +5,21 @@ namespace FriendStorage.UITests.ViewModel
 {
     public class MainViewModelTests
     {
+        private Mock<INavigationViewModel> _navigationViewModelMock;
+        private MainViewModel _viewModel;
+
+        public MainViewModelTests()
+        {
+            _navigationViewModelMock = new Mock<INavigationViewModel>();
+            _viewModel = new MainViewModel(_navigationViewModelMock.Object);
+        }
+
         [Fact(DisplayName = "ShouldCallTheLoadMethodOfTheNavigationViewModel")]
         public void ShouldCallTheLoadMethodOfTheNavigationViewModel()
         {
-            var navigationViewModelMock = new Mock<INavigationViewModel>();
-            var viewModel = new MainViewModel(navigationViewModelMock.Object);
+            _viewModel.Load();
 
-            viewModel.Load();
-
-            navigationViewModelMock.Verify(vm => vm.Load(), Times.Once);
+            _navigationViewModelMock.Verify(vm => vm.Load(), Times.Once);
         }
     }
 }
