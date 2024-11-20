@@ -1,5 +1,4 @@
 ﻿using FriendStorage.DataAccess;
-using FriendStorage.Model;
 using System.Collections.ObjectModel;
 
 namespace FriendStorage.UI.ViewModel
@@ -7,10 +6,12 @@ namespace FriendStorage.UI.ViewModel
     public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
         private INavigationDataProvider _dataProvider;
+        private readonly IEventAggregator _eventAggregator;
 
-        public NavigationViewModel(INavigationDataProvider dataProvider)
+        public NavigationViewModel(INavigationDataProvider dataProvider, IEventAggregator eventAggregator)
         {
-            Friends = new ObservableCollection<LookupItem>();
+            _eventAggregator = eventAggregator;
+            Friends = new ObservableCollection<NavigationItemViewModel>();
             _dataProvider = dataProvider;
         }
 
@@ -19,10 +20,12 @@ namespace FriendStorage.UI.ViewModel
             Friends.Clear();
             foreach (var friend in _dataProvider.GetAllFriends())
             {
-                Friends.Add(friend);
+                Friends.Add(
+                    new NavigationItemViewModel(friend.Id,
+                    friend.DisplayMember, _eventAggregator));
             }
         }
 
-        public ObservableCollection<LookupItem> Friends { get; private set; }
+        public ObservableCollection<NavigationItemViewModel> Friends { get; private set; }
     }
 }
