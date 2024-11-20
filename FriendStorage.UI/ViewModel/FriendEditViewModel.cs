@@ -1,7 +1,14 @@
 ﻿namespace FriendStorage.UI.ViewModel
 {
-    public class FriendEditViewModel : ViewModelBase
+    public interface IFriendEditViewModel
     {
-
+        void Load(int friendId);
+    }
+    public class FriendEditViewModel : ViewModelBase, IFriendEditViewModel
+    {
+        public void Load(int friendId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

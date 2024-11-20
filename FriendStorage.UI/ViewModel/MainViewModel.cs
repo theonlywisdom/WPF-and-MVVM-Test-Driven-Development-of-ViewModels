@@ -1,13 +1,42 @@
-﻿namespace FriendStorage.UI.ViewModel
+﻿using FriendStorage.UI.Events;
+using System.Collections.ObjectModel;
+
+namespace FriendStorage.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel(INavigationViewModel navigationViewModel)
+        private IFriendEditViewModel _selectedFriendEditViewModel;
+        private Func<IFriendEditViewModel> _friendEditVmCreator;
+        private readonly IEventAggregator _eventAggregator;
+
+        public MainViewModel(INavigationViewModel navigationViewModel, Func<IFriendEditViewModel> friendEditVmCreator, IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
             NavigationViewModel = navigationViewModel;
+            FriendEditViewModels = [];
+            _friendEditVmCreator = friendEditVmCreator;
+            _eventAggregator.GetEvent<OpenFriendEditViewEvent>().Subscribe(OnOpenFriendEditView);
+        }
+
+        private void OnOpenFriendEditView(int friendId)
+        {
+            IFriendEditViewModel friendEditVm = _friendEditVmCreator();
+            FriendEditViewModels.Add(friendEditVm);
+            friendEditVm.Load(friendId);
+
+            SelectedFriendEditViewModel = friendEditVm;
         }
 
         public INavigationViewModel NavigationViewModel { get; private set; }
+
+        public ObservableCollection<IFriendEditViewModel> FriendEditViewModels { get; private set; }
+
+
+        public IFriendEditViewModel SelectedFriendEditViewModel
+        {
+            get { return _selectedFriendEditViewModel; }
+            set { _selectedFriendEditViewModel = value; }
+        }
 
         public void Load()
         {
