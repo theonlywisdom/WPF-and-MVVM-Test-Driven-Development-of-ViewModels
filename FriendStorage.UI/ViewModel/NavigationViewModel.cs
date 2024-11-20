@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace FriendStorage.UI.ViewModel
 {
-    public class NavigationViewModel : ViewModelBase
+    public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
         private INavigationDataProvider _dataProvider;
 
