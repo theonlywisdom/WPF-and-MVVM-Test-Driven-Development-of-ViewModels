@@ -1,5 +1,6 @@
 ﻿using FriendStorage.DataAccess;
 using FriendStorage.UI.Wrapper;
+using System.ComponentModel;
 using System.Windows.Input;
 using DelegateCommand = FriendStorage.UI.Command.DelegateCommand;
 
@@ -37,6 +38,15 @@ namespace FriendStorage.UI.ViewModel
         {
             var friend = _dataProvider.GetFriendById(friendId);
             Friend = new FriendWrapper(friend);
+
+            Friend.PropertyChanged += Friend_OnPropertyChanged;
+
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private void Friend_OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
         private void OnSaveExecute(object obj)
