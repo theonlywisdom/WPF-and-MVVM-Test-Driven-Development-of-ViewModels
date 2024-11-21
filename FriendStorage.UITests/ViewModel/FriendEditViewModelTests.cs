@@ -102,5 +102,16 @@ namespace FriendStorage.UITests.ViewModel
             _viewModel.SaveCommand.Execute(null);
             _dataProviderMock.Verify(dp => dp.SaveFriend(_viewModel.Friend.Model), Times.Once);
         }
+
+        [Fact(DisplayName = nameof(ShouldCallAccpetChangesWhenSaveCommandIsExecuted))]
+        public void ShouldCallAccpetChangesWhenSaveCommandIsExecuted()
+        {
+            _viewModel.Load(_friendId);
+            _viewModel.Friend.FirstName = "Changed";
+
+            _viewModel.SaveCommand.Execute(null);
+
+            Assert.False(_viewModel.Friend.IsChanged);
+        }
     }
 }
