@@ -22,7 +22,7 @@ namespace FriendStorage.UITests.ViewModel
             _viewModel = new NavigationViewModel(navigationDataProviderMock.Object, eventAggregatorMock.Object);
         }
 
-        [Fact(DisplayName = "ShouldLoadFriends")]
+        [Fact(DisplayName = nameof(ShouldLoadFriends))]
         public void ShouldLoadFriends()
         {
             _viewModel.Load();
@@ -40,7 +40,7 @@ namespace FriendStorage.UITests.ViewModel
             Assert.Equal("Akua", friend.DisplayMember);
         }
 
-        [Fact(DisplayName = "ShouldLoadFriendsOnlyOnce")]
+        [Fact(DisplayName = nameof(ShouldLoadFriendsOnlyOnce))]
         public void ShouldLoadFriendsOnlyOnce()
         {
             _viewModel.Load();

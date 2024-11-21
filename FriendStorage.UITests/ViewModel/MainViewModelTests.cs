@@ -41,7 +41,7 @@ namespace FriendStorage.UITests.ViewModel
             return friendEditViewModelMock.Object;
         }
 
-        [Fact(DisplayName = "ShouldCallTheLoadMethodOfTheNavigationViewModel")]
+        [Fact(DisplayName = nameof(ShouldCallTheLoadMethodOfTheNavigationViewModel))]
         public void ShouldCallTheLoadMethodOfTheNavigationViewModel()
         {
             _viewModel.Load();
@@ -49,7 +49,7 @@ namespace FriendStorage.UITests.ViewModel
             _navigationViewModelMock.Verify(vm => vm.Load(), Times.Once);
         }
 
-        [Fact(DisplayName = "ShouldAddFriendEditViewModelAndLoadAndSelectIt")]
+        [Fact(DisplayName = nameof(ShouldAddFriendEditViewModelAndLoadAndSelectIt))]
         public void ShouldAddFriendEditViewModelAndLoadAndSelectIt()
         {
             const int friendId = 7;
@@ -65,7 +65,7 @@ namespace FriendStorage.UITests.ViewModel
             _friendEditViewModelMocks.First().Verify(vm => vm.Load(friendId), Times.Once);
         }
 
-        [Fact]
+        [Fact(DisplayName = nameof(ShouldAddFriendEditViewModelsOnlyOnce))]
         public void ShouldAddFriendEditViewModelsOnlyOnce()
         {
             _openFriendEditViewEvent.Publish(5);
@@ -77,7 +77,7 @@ namespace FriendStorage.UITests.ViewModel
             Assert.Equal(3, _viewModel.FriendEditViewModels.Count);
         }
 
-        [Fact]
+        [Fact(DisplayName = nameof(ShouldRaisePropertyChangedEventForSelectedFriendEditViewModel))]
         public void ShouldRaisePropertyChangedEventForSelectedFriendEditViewModel()
         {
             var friendEditVmMock = new Mock<IFriendEditViewModel>();
@@ -91,7 +91,7 @@ namespace FriendStorage.UITests.ViewModel
             Assert.True(fired);
         }
 
-        [Fact(DisplayName = "ShouldRemoveFriendEditViewModelOnCloseFriendTabCommand")]
+        [Fact(DisplayName = nameof(ShouldRemoveFriendEditViewModelOnCloseFriendTabCommand))]
         public void ShouldRemoveFriendEditViewModelOnCloseFriendTabCommand()
         {
             _openFriendEditViewEvent.Publish(7);

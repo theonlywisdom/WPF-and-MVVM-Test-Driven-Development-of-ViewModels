@@ -6,7 +6,7 @@ namespace FriendStorage.UITests.ViewModel
 {
     public class NavigationItemViewModelTests
     {
-        [Fact]
+        [Fact(DisplayName = nameof(ShouldPublishOpenFriendEditViewEvent))]
         public void ShouldPublishOpenFriendEditViewEvent()
         {
             const int friendId = 7;
