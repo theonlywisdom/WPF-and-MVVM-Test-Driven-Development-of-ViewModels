@@ -25,7 +25,7 @@ namespace FriendStorage.UITests.ViewModel
             _viewModel = new FriendEditViewModel(_dataProviderMock.Object);
         }
 
-        [Fact(DisplayName = "ShouldLoadFriend")]
+        [Fact(DisplayName = nameof(ShouldLoadFriend))]
         public void ShouldLoadFriend()
         {
             _viewModel.Load(_friendId);
@@ -36,7 +36,7 @@ namespace FriendStorage.UITests.ViewModel
             _dataProviderMock.Verify(dp => dp.GetFriendById(_friendId), Times.Once);
         }
 
-        [Fact(DisplayName = "ShouldRaisePropertyChangedEventForFriend")]
+        [Fact(DisplayName = nameof(ShouldRaisePropertyChangedEventForFriend))]
         public void ShouldRaisePropertyChangedEventForFriend()
         {
             var fired = _viewModel.IsPropertyChangedFired(
@@ -44,6 +44,29 @@ namespace FriendStorage.UITests.ViewModel
                 nameof(_viewModel.Friend));
 
             Assert.True(fired);
+        }
+
+        [Fact(DisplayName = nameof(ShouldDisableSaveCommandWhenFriendIsLoaded))]
+        public void ShouldDisableSaveCommandWhenFriendIsLoaded()
+        {
+            _viewModel.Load(_friendId);
+
+            Assert.False(_viewModel.SaveCommand.CanExecute(null));
+        }
+
+        [Fact(DisplayName = nameof(ShouldEnableSaveCommandWhenFriendIsChanged))]
+        public void ShouldEnableSaveCommandWhenFriendIsChanged()
+        {
+            _viewModel.Load(_friendId);
+            _viewModel.Friend.FirstName = "Changed";
+
+            Assert.True(_viewModel.SaveCommand.CanExecute(null));
+        }
+
+        [Fact(DisplayName = nameof(ShouldDisableSaveCommandWithoutLoad))]
+        public void ShouldDisableSaveCommandWithoutLoad()
+        {
+            Assert.False(_viewModel.SaveCommand.CanExecute(null));
         }
     }
 }
