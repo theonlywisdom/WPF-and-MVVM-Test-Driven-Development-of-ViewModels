@@ -92,5 +92,15 @@ namespace FriendStorage.UITests.ViewModel
 
             Assert.True(fired);
         }
+
+        [Fact(DisplayName = nameof(ShouldCallSaveMethodOfDataProviderWhenSaveCommandIsExecuted))]
+        public void ShouldCallSaveMethodOfDataProviderWhenSaveCommandIsExecuted()
+        {
+            _viewModel.Load(_friendId);
+            _viewModel.Friend.FirstName = "Changed";
+
+            _viewModel.SaveCommand.Execute(null);
+            _dataProviderMock.Verify(dp => dp.SaveFriend(_viewModel.Friend.Model), Times.Once);
+        }
     }
 }
