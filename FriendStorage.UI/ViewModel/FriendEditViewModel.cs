@@ -40,15 +40,9 @@ namespace FriendStorage.UI.ViewModel
 
         public void Load(int? friendId)
         {
-            if (friendId == null)
-            {
-                Friend = new FriendWrapper(new Friend());
-            }
-            else
-            {
-                var friend = _dataProvider.GetFriendById(friendId.Value);
-                Friend = new FriendWrapper(friend);
-            }
+            Friend friend = friendId.HasValue ? _dataProvider.GetFriendById(friendId.Value) : new Friend();
+
+            Friend = new FriendWrapper(friend);
 
             Friend.PropertyChanged += Friend_OnPropertyChanged;
 
