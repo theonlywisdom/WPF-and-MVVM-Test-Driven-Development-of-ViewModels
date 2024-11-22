@@ -48,12 +48,19 @@ namespace FriendStorage.UI.ViewModel
 
             Friend.PropertyChanged += Friend_OnPropertyChanged;
 
+            InvalidateCommands();
+        }
+
+        private void InvalidateCommands()
+        {
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)DeleteCommand).RaiseCanExecuteChanged();
         }
 
         private void Friend_OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)DeleteCommand).RaiseCanExecuteChanged();
         }
 
         private void OnSaveExecute(object obj)
