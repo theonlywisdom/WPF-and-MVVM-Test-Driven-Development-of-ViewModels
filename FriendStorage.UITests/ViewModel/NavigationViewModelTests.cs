@@ -73,5 +73,26 @@ namespace FriendStorage.UITests.ViewModel
 
             Assert.Equal("Yaa Poku", navigationItem.DisplayMember);
         }
+
+        [Fact(DisplayName = nameof(ShouldAddNavigationItemWhenFriendIsSaved))]
+        public void ShouldAddNavigationItemWhenFriendIsSaved()
+        {
+            _viewModel.Load();
+
+            const int newFriendId = 97;
+
+            _friendSavedEvent.Publish(new Friend
+            {
+                Id = newFriendId,
+                FirstName = "Ntekumah",
+                LastName = "Ananse"
+            });
+
+            Assert.Equal(3, _viewModel.Friends.Count);
+
+            var addedItem = _viewModel.Friends.SingleOrDefault(f => f.Id == newFriendId);
+            Assert.NotNull(addedItem);
+            Assert.Equal("Ntekumah Ananse", addedItem.DisplayMember);
+        }
     }
 }
