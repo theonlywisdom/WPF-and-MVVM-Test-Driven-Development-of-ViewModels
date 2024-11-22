@@ -76,7 +76,7 @@ namespace FriendStorage.UI.ViewModel
 
         private bool OnDeleteCanExecute(object arg)
         {
-            return true;
+            return Friend.Id > 0;
         }
     }
 }

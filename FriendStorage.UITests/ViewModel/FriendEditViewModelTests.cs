@@ -152,5 +152,12 @@ namespace FriendStorage.UITests.ViewModel
             _viewModel.Load(_friendId);
             Assert.True(_viewModel.DeleteCommand.CanExecute(null));
         }
+
+        [Fact(DisplayName = nameof(ShouldDisbleDeleteCommandForNewFriend))]
+        public void ShouldDisbleDeleteCommandForNewFriend()
+        {
+            _viewModel.Load(null);
+            Assert.False(_viewModel.DeleteCommand.CanExecute(null));
+        }
     }
 }
