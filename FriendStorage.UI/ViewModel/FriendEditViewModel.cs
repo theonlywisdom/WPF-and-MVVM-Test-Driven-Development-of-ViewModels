@@ -78,7 +78,7 @@ namespace FriendStorage.UI.ViewModel
 
         private void OnDeleteExecute(object obj)
         {
-            throw new NotImplementedException();
+            _dataProvider.DeleteFriend(Friend.Model.Id);
         }
 
         private bool OnDeleteCanExecute(object arg)
