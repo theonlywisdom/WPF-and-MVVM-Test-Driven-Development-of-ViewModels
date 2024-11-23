@@ -19,7 +19,7 @@ namespace FriendStorage.UI.ViewModel
             _friendEditVmCreator = friendEditVmCreator;
             AddFriendCommand = new DelegateCommand(OnOnAddFriendExecute);
             CloseFriendTabCommand = new DelegateCommand(OnCloseFriendTabExecute);
-            _eventAggregator.GetEvent<OpenFriendEditViewEvent>().Subscribe(OnOpenFriendEditView);
+            _eventAggregator.GetEvent<OpenFriendEditViewEvent>().Subscribe(OnOpenFriendEditView); _eventAggregator.GetEvent<FriendDeletedEvent>().Subscribe(OnDeleted);
         }
 
         public ICommand AddFriendCommand { get; private set; }
@@ -43,6 +43,12 @@ namespace FriendStorage.UI.ViewModel
         private void OnCloseFriendTabExecute(object obj)
         {
             var friendEditVm = (IFriendEditViewModel)obj;
+            FriendEditViewModels.Remove(friendEditVm);
+        }
+
+        private void OnDeleted(int friendId)
+        {
+            var friendEditVm = FriendEditViewModels.Single(f => f.Friend.Id == friendId);
             FriendEditViewModels.Remove(friendEditVm);
         }
 
