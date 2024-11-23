@@ -16,6 +16,20 @@ namespace FriendStorage.UI.ViewModel
             Friends = new ObservableCollection<NavigationItemViewModel>();
             _dataProvider = dataProvider;
             _eventAggregator.GetEvent<FriendSavedEvent>().Subscribe(OnFriendSaved);
+            _eventAggregator.GetEvent<FriendDeletedEvent>().Subscribe(OnFriendDeleted);
+        }
+
+        public ObservableCollection<NavigationItemViewModel> Friends { get; private set; }
+
+        public void Load()
+        {
+            Friends.Clear();
+            foreach (var friend in _dataProvider.GetAllFriends())
+            {
+                Friends.Add(
+                    new NavigationItemViewModel(friend.Id,
+                    friend.DisplayMember, _eventAggregator));
+            }
         }
 
         private void OnFriendSaved(Friend friend)
@@ -34,17 +48,10 @@ namespace FriendStorage.UI.ViewModel
             }
         }
 
-        public void Load()
+        private void OnFriendDeleted(int friendId)
         {
-            Friends.Clear();
-            foreach (var friend in _dataProvider.GetAllFriends())
-            {
-                Friends.Add(
-                    new NavigationItemViewModel(friend.Id,
-                    friend.DisplayMember, _eventAggregator));
-            }
+            var navigationItem = Friends.Single(n => n.Id == friendId);
+            Friends.Remove(navigationItem);
         }
-
-        public ObservableCollection<NavigationItemViewModel> Friends { get; private set; }
     }
 }
