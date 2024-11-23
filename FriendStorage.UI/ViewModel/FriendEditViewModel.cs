@@ -1,5 +1,6 @@
 ﻿using FriendStorage.DataAccess;
 using FriendStorage.Model;
+using FriendStorage.UI.Dialogue;
 using FriendStorage.UI.Events;
 using FriendStorage.UI.Wrapper;
 using System.ComponentModel;
@@ -17,12 +18,14 @@ namespace FriendStorage.UI.ViewModel
     {
         private IFriendDataProvider _dataProvider;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IMessageDialogueService _messageDialogueService;
         private FriendWrapper _friend;
 
-        public FriendEditViewModel(IFriendDataProvider dataProvider, IEventAggregator eventAggregator)
+        public FriendEditViewModel(IFriendDataProvider dataProvider, IEventAggregator eventAggregator, IMessageDialogueService messageDialogueService)
         {
             _dataProvider = dataProvider;
             _eventAggregator = eventAggregator;
+            _messageDialogueService = messageDialogueService;
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute, OnDeleteCanExecute);
         }
@@ -78,6 +81,7 @@ namespace FriendStorage.UI.ViewModel
 
         private void OnDeleteExecute(object obj)
         {
+            _messageDialogueService.ShowYesNoDialogue("Delete friend", "");
             _dataProvider.DeleteFriend(Friend.Model.Id);
             _eventAggregator.GetEvent<FriendDeletedEvent>().Publish(Friend.Model.Id);
         }
