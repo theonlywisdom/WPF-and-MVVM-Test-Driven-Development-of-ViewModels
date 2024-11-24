@@ -104,6 +104,6 @@
             Grid.ColumnSpan="3"
             Margin="10"
             Foreground="LightGray"
-            Text="Created by Thomas Claudius Huber, 2016" />
+            Text="Created by theonlywisdom, 2024" />
     </Grid>
 </Window>

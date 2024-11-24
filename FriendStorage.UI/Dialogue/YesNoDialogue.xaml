@@ -1,0 +1,43 @@
+﻿<Window
+    x:Class="FriendStorage.UI.Dialogue.YesNoDialogue"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:FriendStorage.UI.Dialogue"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    MinWidth="300"
+    Background="#DDDDDD"
+    FontSize="{StaticResource DefaultFontSize}"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterOwner"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+    <Border BorderBrush="White" BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                x:Name="textBlock"
+                Margin="5"
+                Text="The Message Text"
+                TextWrapping="Wrap" />
+            <StackPanel
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+                        <Setter Property="Margin" Value="5" />
+                        <Setter Property="Width" Value="75" />
+                    </Style>
+                </StackPanel.Resources>
+                <Button Click="ButtonYes_Click" Content="Yes" />
+                <Button Click="ButtonNo_Click" Content="No" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
