@@ -1,4 +1,5 @@
 ﻿using FriendStorage.DataAccess;
+using FriendStorage.UI.Dialogue;
 using FriendStorage.UI.View;
 using FriendStorage.UI.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,18 +24,19 @@ namespace FriendStorage.UI
             services.AddTransient<MainWindow>();
             services.AddTransient<MainViewModel>();
             services.AddSingleton<IEventAggregator, EventAggregator>();
-            services.AddSingleton<IDataService, FileDataService>();
-            services.AddSingleton<IFriendDataProvider, FriendDataProvider>();
+            services.AddTransient<IDataService, FileDataService>();
+            services.AddTransient<IFriendDataProvider, FriendDataProvider>();
             services.AddTransient<IFriendEditViewModel, FriendEditViewModel>();
 
-            services.AddSingleton<Func<IDataService>>(sp => () => sp.GetRequiredService<IDataService>());
+            services.AddTransient<Func<IDataService>>(sp => () => sp.GetRequiredService<IDataService>());
 
             services.AddTransient<Func<IFriendEditViewModel>>(sp => () => sp.GetRequiredService<IFriendEditViewModel>());
 
-            services.AddSingleton<Func<IFriendDataProvider>>(sp => () => sp.GetRequiredService<IFriendDataProvider>());
+            services.AddTransient<Func<IFriendDataProvider>>(sp => () => sp.GetRequiredService<IFriendDataProvider>());
 
             services.AddTransient<INavigationDataProvider, NavigationDataProvider>();
             services.AddTransient<INavigationViewModel, NavigationViewModel>();
+            services.AddTransient<IMessageDialogueService, MessageDialogueService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
